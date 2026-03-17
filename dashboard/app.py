@@ -94,7 +94,7 @@ html, body, [data-testid="stAppViewContainer"] {
 [data-testid="stSidebar"] label p { color: #e8dfc8 !important; font-family: 'Playfair Display', serif !important; font-size: 15px !important; font-weight: 400 !important; }
 [data-testid="stSidebar"] [data-testid="stMarkdownContainer"] p { color: #c8b898 !important; font-family: 'IBM Plex Mono', monospace !important; font-size: 10px !important; }
 [data-testid="stSidebar"] [data-testid="stWidgetLabel"] p { color: #9a8a70 !important; font-family: 'IBM Plex Mono', monospace !important; font-size: 9px !important; letter-spacing: 0.15em; text-transform: uppercase; }
-[data-testid="stSidebar"] .stRadio label { color: #d4c9b0 !important; font-family: 'IBM Plex Mono', monospace !important; font-size: 14px !important; letter-spacing: 0.08em; }
+[data-testid="stSidebar"] .stRadio label { color: #d4c9b0 !important; font-family: 'IBM Plex Mono', monospace !important; font-size: 12px !important; letter-spacing: 0.08em; }
 
 h1, h2, h3 {
     font-family: 'Playfair Display', serif !important;
@@ -350,7 +350,6 @@ div[data-testid="stSidebar"] .stRadio > div {
 </style>
 """, unsafe_allow_html=True)
 
-# ── FIX: PLOT_TEMPLATE sin title_font en el nivel raíz para evitar "undefined" ──
 PLOT_TEMPLATE = dict(
     layout=dict(
         paper_bgcolor="#f5f0e8",
@@ -359,14 +358,10 @@ PLOT_TEMPLATE = dict(
         xaxis=dict(
             gridcolor="#ddd5c0", linecolor="#c8bfa8",
             tickfont=dict(size=10, color="#3d3228"),
-            titlefont=dict(size=10, color="#3d3228"),
-            title_font=dict(color="#3d3228"),
         ),
         yaxis=dict(
             gridcolor="#ddd5c0", linecolor="#c8bfa8",
             tickfont=dict(size=10, color="#3d3228"),
-            titlefont=dict(size=10, color="#3d3228"),
-            title_font=dict(color="#3d3228"),
         ),
         legend=dict(font=dict(color="#1a1410", size=11)),
         margin=dict(l=40, r=20, t=40, b=40),
@@ -440,13 +435,16 @@ def metric_card(label, value, delta=None):
 
 # ── Helper para aplicar template y título sin conflictos ───────────────────────
 def apply_template(fig, title=None, **kwargs):
-    """Aplica PLOT_TEMPLATE y opcionalmente un título, sin generar 'undefined'."""
     update_kwargs = dict(**PLOT_TEMPLATE["layout"])
-    if title:
-        update_kwargs["title_text"] = title
-        update_kwargs["title_font"] = dict(color="#1a1410", family="IBM Plex Mono", size=12)
     update_kwargs.update(kwargs)
     fig.update_layout(**update_kwargs)
+    if title:
+        fig.update_layout(
+            title=dict(
+                text=title,
+                font=dict(color="#1a1410", family="IBM Plex Mono", size=12)
+            )
+        )
     return fig
 
 
