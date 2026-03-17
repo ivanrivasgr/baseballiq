@@ -1,0 +1,59 @@
+[project]
+name = "baseballiq"
+version = "0.1.0"
+description = "Production MLB analytics platform — Statcast + DuckDB + XGBoost + Claude"
+readme = "README.md"
+requires-python = ">=3.11"
+
+dependencies = [
+    # Data ingestion
+    "pybaseball>=2.2.7",
+
+    # Data layer
+    "pandas>=2.2.0",
+    "numpy>=1.26.0",
+    "pyarrow>=16.0.0",
+    "duckdb>=0.10.0",
+
+    # ML
+    "xgboost>=2.0.0",
+    "scikit-learn>=1.4.0",
+    "shap>=0.45.0",
+
+    # LLM
+    "anthropic>=0.28.0",
+
+    # Dashboard
+    "streamlit>=1.35.0",
+    "plotly>=5.22.0",
+
+    # Reports
+    "jinja2>=3.1.0",
+
+    # Utils
+    "python-dotenv>=1.0.0",
+    "requests>=2.31.0",
+]
+
+[project.optional-dependencies]
+dev = [
+    "pytest>=8.0.0",
+    "pytest-cov>=5.0.0",
+    "ruff>=0.4.0",
+    "mypy>=1.10.0",
+]
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[tool.ruff]
+line-length = 100
+target-version = "py311"
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "UP"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+addopts = "-v --tb=short"

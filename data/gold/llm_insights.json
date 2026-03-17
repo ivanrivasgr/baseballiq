@@ -1,0 +1,222 @@
+[
+  {
+    "pitcher_id": 1010,
+    "pitcher_name": "Garrett Ellis",
+    "game_pk": 701340,
+    "game_date": "2024-09-13",
+    "performance_tier": "below_avg",
+    "headline": "Garrett struggled with command, issued multiple hard-hit balls.",
+    "key_finding": "A barrel rate allowed of 7% is well above the league average of 7.8%, indicating poor pitch location when behind in counts. Whiff rate of 31% suggests hitters were comfortable laying off breaking balls.",
+    "concern_flag": "High barrel rate in back-to-back starts warrants mechanical review.",
+    "pitch_mix_note": null
+  },
+  {
+    "pitcher_id": 1005,
+    "pitcher_name": "Devon Okafor",
+    "game_pk": 701335,
+    "game_date": "2024-09-13",
+    "performance_tier": "elite",
+    "headline": "Devon was untouchable \u2014 elite swing-and-miss stuff all night.",
+    "key_finding": "Devon generated a 37% whiff rate, well above the league average of 25.4%. Velocity held steady above 94 mph through the 7th inning with no signs of fatigue. Particularly dominant pitching to the outer third against right-handed hitters.",
+    "concern_flag": null,
+    "pitch_mix_note": "Fastball-heavy mix (est. ~52%) with curveball as primary off-speed."
+  },
+  {
+    "pitcher_id": 1006,
+    "pitcher_name": "Liam Castillo",
+    "game_pk": 701336,
+    "game_date": "2024-09-18",
+    "performance_tier": "average",
+    "headline": "Liam battled but relied on defense for a solid outing.",
+    "key_finding": "Velocity was down 1.9 mph from the 30-day baseline, though command compensated with a 53% zone rate. xwOBA allowed of 0.297 is near league average \u2014 no dominant pitch stood out today.",
+    "concern_flag": "Velocity dip worth monitoring over the next two starts.",
+    "pitch_mix_note": null
+  },
+  {
+    "pitcher_id": 1001,
+    "pitcher_name": "Marcus Delgado",
+    "game_pk": 701331,
+    "game_date": "2024-09-18",
+    "performance_tier": "above_avg",
+    "headline": "Marcus was sharp, controlling both sides of the plate effectively.",
+    "key_finding": "A 32% CSW rate reflects consistent zone presence combined with above-average chase rates. Marcus's pitch mix diversity (entropy: 0.90) kept hitters off-balance, contributing to soft contact when they did make contact.",
+    "concern_flag": null,
+    "pitch_mix_note": "Fastball-heavy mix (est. ~59%) with slider as primary off-speed."
+  },
+  {
+    "pitcher_id": 1010,
+    "pitcher_name": "Garrett Ellis",
+    "game_pk": 701350,
+    "game_date": "2024-09-18",
+    "performance_tier": "above_avg",
+    "headline": "Garrett was sharp, controlling both sides of the plate effectively.",
+    "key_finding": "A 30% CSW rate reflects consistent zone presence combined with above-average chase rates. Garrett's pitch mix diversity (entropy: 1.27) kept hitters off-balance, contributing to soft contact when they did make contact.",
+    "concern_flag": null,
+    "pitch_mix_note": "Fastball-heavy mix (est. ~49%) with changeup as primary off-speed."
+  },
+  {
+    "pitcher_id": 1005,
+    "pitcher_name": "Devon Okafor",
+    "game_pk": 701345,
+    "game_date": "2024-09-18",
+    "performance_tier": "average",
+    "headline": "Devon battled but relied on defense for a solid outing.",
+    "key_finding": "Velocity was down 1.5 mph from the 30-day baseline, though command compensated with a 45% zone rate. xwOBA allowed of 0.304 is near league average \u2014 no dominant pitch stood out today.",
+    "concern_flag": "Velocity dip worth monitoring over the next two starts.",
+    "pitch_mix_note": null
+  },
+  {
+    "pitcher_id": 1004,
+    "pitcher_name": "Jake Nordstrom",
+    "game_pk": 701314,
+    "game_date": "2024-09-23",
+    "performance_tier": "below_avg",
+    "headline": "Jake struggled with command, issued multiple hard-hit balls.",
+    "key_finding": "A barrel rate allowed of 12% is well above the league average of 7.8%, indicating poor pitch location when behind in counts. Whiff rate of 29% suggests hitters were comfortable laying off breaking balls.",
+    "concern_flag": "High barrel rate in back-to-back starts warrants mechanical review.",
+    "pitch_mix_note": null
+  },
+  {
+    "pitcher_id": 1008,
+    "pitcher_name": "Hiro Tanaka",
+    "game_pk": 701328,
+    "game_date": "2024-09-23",
+    "performance_tier": "average",
+    "headline": "Hiro battled but relied on defense for a solid outing.",
+    "key_finding": "Velocity was down 1.9 mph from the 30-day baseline, though command compensated with a 47% zone rate. xwOBA allowed of 0.277 is near league average \u2014 no dominant pitch stood out today.",
+    "concern_flag": "Velocity dip worth monitoring over the next two starts.",
+    "pitch_mix_note": null
+  },
+  {
+    "pitcher_id": 1007,
+    "pitcher_name": "Brendan Marsh",
+    "game_pk": 701337,
+    "game_date": "2024-09-23",
+    "performance_tier": "below_avg",
+    "headline": "Brendan struggled with command, issued multiple hard-hit balls.",
+    "key_finding": "A barrel rate allowed of 5% is well above the league average of 7.8%, indicating poor pitch location when behind in counts. Whiff rate of 16% suggests hitters were comfortable laying off breaking balls.",
+    "concern_flag": "High barrel rate in back-to-back starts warrants mechanical review.",
+    "pitch_mix_note": null
+  },
+  {
+    "pitcher_id": 1006,
+    "pitcher_name": "Liam Castillo",
+    "game_pk": 701346,
+    "game_date": "2024-09-23",
+    "performance_tier": "below_avg",
+    "headline": "Liam struggled with command, issued multiple hard-hit balls.",
+    "key_finding": "A barrel rate allowed of 4% is well above the league average of 7.8%, indicating poor pitch location when behind in counts. Whiff rate of 27% suggests hitters were comfortable laying off breaking balls.",
+    "concern_flag": "High barrel rate in back-to-back starts warrants mechanical review.",
+    "pitch_mix_note": null
+  },
+  {
+    "pitcher_id": 1003,
+    "pitcher_name": "Carlos Fuentes",
+    "game_pk": 701323,
+    "game_date": "2024-09-23",
+    "performance_tier": "average",
+    "headline": "Carlos battled but relied on defense for a solid outing.",
+    "key_finding": "Velocity was down 0.6 mph from the 30-day baseline, though command compensated with a 48% zone rate. xwOBA allowed of 0.309 is near league average \u2014 no dominant pitch stood out today.",
+    "concern_flag": "Velocity dip worth monitoring over the next two starts.",
+    "pitch_mix_note": null
+  },
+  {
+    "pitcher_id": 1002,
+    "pitcher_name": "Tyler Wren",
+    "game_pk": 701332,
+    "game_date": "2024-09-23",
+    "performance_tier": "above_avg",
+    "headline": "Tyler was sharp, controlling both sides of the plate effectively.",
+    "key_finding": "A 30% CSW rate reflects consistent zone presence combined with above-average chase rates. Tyler's pitch mix diversity (entropy: 1.31) kept hitters off-balance, contributing to soft contact when they did make contact.",
+    "concern_flag": null,
+    "pitch_mix_note": "Fastball-heavy mix (est. ~61%) with slider as primary off-speed."
+  },
+  {
+    "pitcher_id": 1001,
+    "pitcher_name": "Marcus Delgado",
+    "game_pk": 701341,
+    "game_date": "2024-09-23",
+    "performance_tier": "average",
+    "headline": "Marcus battled but relied on defense for a solid outing.",
+    "key_finding": "Velocity was down 0.0 mph from the 30-day baseline, though command compensated with a 49% zone rate. xwOBA allowed of 0.265 is near league average \u2014 no dominant pitch stood out today.",
+    "concern_flag": "Velocity dip worth monitoring over the next two starts.",
+    "pitch_mix_note": null
+  },
+  {
+    "pitcher_id": 1009,
+    "pitcher_name": "Rafael Montoya",
+    "game_pk": 701319,
+    "game_date": "2024-09-23",
+    "performance_tier": "average",
+    "headline": "Rafael battled but relied on defense for a solid outing.",
+    "key_finding": "Velocity was down 0.5 mph from the 30-day baseline, though command compensated with a 42% zone rate. xwOBA allowed of 0.243 is near league average \u2014 no dominant pitch stood out today.",
+    "concern_flag": "Velocity dip worth monitoring over the next two starts.",
+    "pitch_mix_note": null
+  },
+  {
+    "pitcher_id": 1008,
+    "pitcher_name": "Hiro Tanaka",
+    "game_pk": 701338,
+    "game_date": "2024-09-28",
+    "performance_tier": "above_avg",
+    "headline": "Hiro was sharp, controlling both sides of the plate effectively.",
+    "key_finding": "A 30% CSW rate reflects consistent zone presence combined with above-average chase rates. Hiro's pitch mix diversity (entropy: 1.52) kept hitters off-balance, contributing to soft contact when they did make contact.",
+    "concern_flag": null,
+    "pitch_mix_note": "Fastball-heavy mix (est. ~50%) with curveball as primary off-speed."
+  },
+  {
+    "pitcher_id": 1003,
+    "pitcher_name": "Carlos Fuentes",
+    "game_pk": 701333,
+    "game_date": "2024-09-28",
+    "performance_tier": "average",
+    "headline": "Carlos battled but relied on defense for a solid outing.",
+    "key_finding": "Velocity was down 0.8 mph from the 30-day baseline, though command compensated with a 46% zone rate. xwOBA allowed of 0.284 is near league average \u2014 no dominant pitch stood out today.",
+    "concern_flag": "Velocity dip worth monitoring over the next two starts.",
+    "pitch_mix_note": null
+  },
+  {
+    "pitcher_id": 1004,
+    "pitcher_name": "Jake Nordstrom",
+    "game_pk": 701324,
+    "game_date": "2024-09-28",
+    "performance_tier": "below_avg",
+    "headline": "Jake struggled with command, issued multiple hard-hit balls.",
+    "key_finding": "A barrel rate allowed of 8% is well above the league average of 7.8%, indicating poor pitch location when behind in counts. Whiff rate of 32% suggests hitters were comfortable laying off breaking balls.",
+    "concern_flag": "High barrel rate in back-to-back starts warrants mechanical review.",
+    "pitch_mix_note": null
+  },
+  {
+    "pitcher_id": 1002,
+    "pitcher_name": "Tyler Wren",
+    "game_pk": 701342,
+    "game_date": "2024-09-28",
+    "performance_tier": "above_avg",
+    "headline": "Tyler was sharp, controlling both sides of the plate effectively.",
+    "key_finding": "A 30% CSW rate reflects consistent zone presence combined with above-average chase rates. Tyler's pitch mix diversity (entropy: 1.37) kept hitters off-balance, contributing to soft contact when they did make contact.",
+    "concern_flag": null,
+    "pitch_mix_note": "Fastball-heavy mix (est. ~48%) with slider as primary off-speed."
+  },
+  {
+    "pitcher_id": 1007,
+    "pitcher_name": "Brendan Marsh",
+    "game_pk": 701347,
+    "game_date": "2024-09-28",
+    "performance_tier": "below_avg",
+    "headline": "Brendan struggled with command, issued multiple hard-hit balls.",
+    "key_finding": "A barrel rate allowed of 6% is well above the league average of 7.8%, indicating poor pitch location when behind in counts. Whiff rate of 17% suggests hitters were comfortable laying off breaking balls.",
+    "concern_flag": "High barrel rate in back-to-back starts warrants mechanical review.",
+    "pitch_mix_note": null
+  },
+  {
+    "pitcher_id": 1009,
+    "pitcher_name": "Rafael Montoya",
+    "game_pk": 701329,
+    "game_date": "2024-09-28",
+    "performance_tier": "elite",
+    "headline": "Rafael was untouchable \u2014 elite swing-and-miss stuff all night.",
+    "key_finding": "Rafael generated a 42% whiff rate, well above the league average of 25.4%. Velocity held steady above 99 mph through the 7th inning with no signs of fatigue. Particularly dominant pitching to the outer third against right-handed hitters.",
+    "concern_flag": null,
+    "pitch_mix_note": "Fastball-heavy mix (est. ~58%) with curveball as primary off-speed."
+  }
+]

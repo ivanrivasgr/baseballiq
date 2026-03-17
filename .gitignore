@@ -1,0 +1,44 @@
+# Environment
+.env
+.venv/
+__pycache__/
+*.pyc
+*.pyo
+.pytest_cache/
+.ruff_cache/
+.mypy_cache/
+
+# Data — Bronze and Silver are NOT committed (too large)
+data/bronze/
+data/silver/
+
+# Gold IS committed (small, needed for Streamlit demo)
+# data/gold/  ← intentionally NOT ignored
+
+# Model artifacts (large — use git-lfs or regenerate locally)
+models/artifacts/*.pkl
+
+# Reports output
+reports/output/
+
+# pybaseball cache
+~/.pybaseball/
+
+# IDE
+.vscode/
+.idea/
+*.swp
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Build
+dist/
+*.egg-info/
+
+venv311/
+
+.streamlit/secrets.toml
+
+.streamlit/secrets.toml
