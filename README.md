@@ -1,4 +1,4 @@
-# ⚾ BaseballIQ — Production MLB Analytics Platform
+# ⚾ BaseballIQ - Production MLB Analytics Platform
 
 [![Python 3.11+](https://img.shields.io/badge/python-3.11+-blue.svg)](https://www.python.org/)
 [![Streamlit](https://img.shields.io/badge/streamlit-1.35-ff4b4b.svg)](https://streamlit.io)
@@ -17,7 +17,7 @@
 
 BaseballIQ is an end-to-end MLB analytics platform built to demonstrate what a modern sports analytics engineering team would realistically ship. It ingests pitch-by-pitch Statcast data, processes it through a Bronze/Silver/Gold medallion architecture, trains a predictive model for pitcher effectiveness (CSW rate), and surfaces results through an AI-powered scouting report system backed by Claude.
 
-This is not a tutorial project. Every architectural decision — from using DuckDB over Pandas for the analytical layer, to doing time-series cross-validation for the ML model, to positioning the LLM after all statistics are computed — reflects real production engineering judgment.
+This is not a tutorial project. Every architectural decision from using DuckDB over Pandas for the analytical layer, to doing time-series cross-validation for the ML model, to positioning the LLM after all statistics are computed, reflects real production engineering judgment.
 
 ---
 
@@ -64,7 +64,7 @@ DuckDB runs complex SQL window functions (30-day rolling averages, cross-pitcher
 Called strikes + whiffs / total pitches is the strongest single-game pitcher quality signal, preferred by front offices over ERA (noisy, defense-dependent), K% (does not capture command), or WHIP (context-dependent). CSW is also more stable across small samples, making it a better regression target.
 
 **Why time-series cross-validation?**
-Standard k-fold shuffles the data, allowing the model to train on future games. In production, you never have future data. TimeSeriesSplit preserves temporal ordering — each validation fold is strictly after its training fold. This is the most common ML leakage mistake in sports analytics portfolios.
+Standard k-fold shuffles the data, allowing the model to train on future games. In production, you never have future data. TimeSeriesSplit preserves temporal ordering each validation fold is strictly after its training fold. This is the most common ML leakage mistake in sports analytics portfolios.
 
 **Why LLM as a layer, not the core?**
 The LLM receives fully-computed statistics and writes narrative around them. It never computes numbers. This makes the system auditable (every stat is verifiable), testable (outputs do not change if the LLM is replaced), and cost-efficient (one API call per report, not per calculation).
@@ -190,7 +190,7 @@ ML PREDICTION
 AI ANALYST SUMMARY
   Tier: ELITE
 
-  "Delgado's slider was historic — generated 41% whiff rate
+  "Delgado's slider was historic generated 41% whiff rate
   against Houston's right-handed lineup."
 
   Key Finding: Elite velocity held above 96 mph through the
@@ -206,7 +206,7 @@ AI ANALYST SUMMARY
 
 ## Data Source
 
-MLB Statcast via [pybaseball](https://github.com/jldbc/pybaseball) — free, public, ~3M pitch events per MLB season. The demo ships with synthetic data calibrated to real 2024 Statcast distributions. Run `make ingest` to pull live data.
+MLB Statcast via [pybaseball](https://github.com/jldbc/pybaseball) - free, public, ~3M pitch events per MLB season. The demo ships with synthetic data calibrated to real 2024 Statcast distributions. Run `make ingest` to pull live data.
 
 ---
 
