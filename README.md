@@ -1,4 +1,4 @@
-# ⚾ BaseballIQ - Production MLB Analytics Platform
+# BaseballIQ - Production MLB Analytics Platform
 
 [![Python 3.11+](https://img.shields.io/badge/python-3.11+-blue.svg)](https://www.python.org/)
 [![Streamlit](https://img.shields.io/badge/streamlit-1.35-ff4b4b.svg)](https://streamlit.io)
@@ -9,7 +9,8 @@
 
 > A portfolio-grade sports analytics system demonstrating production data engineering, machine learning, and LLM integration on MLB Statcast data.
 
-**[Live Demo](https://baseballiq-production-09af.up.railway.app)** · **[Architecture Doc](ARCHITECTURE.md)**
+**Open the dashboard:** run `streamlit run dashboard/app.py` after installing the requirements.  
+**[Architecture Doc](ARCHITECTURE.md)** | **[Streamlit Community Cloud](https://share.streamlit.io/)**
 
 ---
 
@@ -93,15 +94,36 @@ baseballiq/
 ├── tests/
 ├── generate_demo_data.py
 ├── Makefile
-├── railway.toml
+├── .streamlit/           Streamlit configuration
 └── pyproject.toml
 ```
 
 ---
 
+## See The Project
+
+The fastest way to explore BaseballIQ is through the Streamlit dashboard. The repo includes pre-generated demo data in `data/gold/`, so visitors can run the app without API keys or a full data pipeline.
+
+```bash
+git clone https://github.com/ivanrivasgr/baseballiq
+cd baseballiq
+pip install -r requirements.txt
+streamlit run dashboard/app.py
+```
+
+Then open the local URL Streamlit prints in the terminal, usually:
+
+```text
+http://localhost:8501
+```
+
+The dashboard uses cached synthetic Statcast-style data and cached LLM-style insights, so the project is viewable immediately after install.
+
+---
+
 ## Quickstart
 
-**Option A: Run the demo (no setup required)**
+**Option A: Dashboard demo**
 
 ```bash
 git clone https://github.com/ivanrivasgr/baseballiq
@@ -128,21 +150,17 @@ make dashboard
 
 ---
 
-## Deploy
+## Public Demo Deployment
 
-**Railway (current)**
-
-1. Fork this repo
-2. Create a new project on railway.app and connect your fork
-3. Add `ANTHROPIC_API_KEY` in the Variables tab
-4. Railway auto-detects `railway.toml` and deploys
-
-**Streamlit Community Cloud (free alternative)**
+This project is designed to be shared through Streamlit Community Cloud.
 
 1. Fork this repo
-2. Go to share.streamlit.io, create a new app, select your fork, set file to `dashboard/app.py`
-3. Under Advanced settings add: `ANTHROPIC_API_KEY = "sk-ant-..."`
-4. Deploy
+2. Go to [share.streamlit.io](https://share.streamlit.io/)
+3. Create a new app from the fork
+4. Set the app file to `dashboard/app.py`
+5. Deploy
+
+No secrets are required for the demo dashboard because the repo includes cached data in `data/gold/`. Add `ANTHROPIC_API_KEY` only if you want to regenerate live LLM scouting insights.
 
 ---
 
@@ -223,7 +241,7 @@ MLB Statcast via [pybaseball](https://github.com/jldbc/pybaseball) - free, publi
 | Dashboard | Streamlit + Plotly |
 | Task runner | GNU Make |
 | Testing | pytest |
-| Deployment | Railway |
+| Deployment | Streamlit Community Cloud |
 
 ---
 
