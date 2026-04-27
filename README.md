@@ -9,8 +9,7 @@
 
 > A portfolio-grade sports analytics system demonstrating production data engineering, machine learning, and LLM integration on MLB Statcast data.
 
-**Open the dashboard:** run `streamlit run dashboard/app.py` after installing the requirements.  
-**[Architecture Doc](ARCHITECTURE.md)** | **[Streamlit Community Cloud](https://share.streamlit.io/)**
+**[Live Demo](https://baseballiq-aovcjbmgvuzznyck63ajbg.streamlit.app/)** | **[Architecture Doc](ARCHITECTURE.md)** | **Run locally:** `streamlit run dashboard/app.py`
 
 ---
 
