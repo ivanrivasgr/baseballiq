@@ -1,0 +1,30 @@
+{
+  "id": "evt-abc123",
+  "sport_key": "baseball_mlb",
+  "commence_time": "2025-07-04T23:05:00Z",
+  "home_team": "Philadelphia Phillies",
+  "away_team": "New York Mets",
+  "bookmakers": [
+    {
+      "key": "draftkings",
+      "title": "DraftKings",
+      "markets": [
+        {
+          "key": "batter_home_runs",
+          "last_update": "2025-07-04T13:01:00Z",
+          "outcomes": [
+            {"name": "Over", "description": "Kyle Schwarber", "price": 320, "point": 0.5},
+            {"name": "Under", "description": "Kyle Schwarber", "price": -450, "point": 0.5},
+            {"name": "Over", "description": "Juan Soto", "price": 450, "point": 0.5}
+          ]
+        },
+        {
+          "key": "totals",
+          "outcomes": [
+            {"name": "Over", "price": -110, "point": 8.5}
+          ]
+        }
+      ]
+    }
+  ]
+}

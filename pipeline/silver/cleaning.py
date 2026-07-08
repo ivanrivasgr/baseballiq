@@ -38,6 +38,8 @@ def load_bronze_to_silver(con: duckdb.DuckDBPyConnection) -> None:
         CAST(batter_id    AS INTEGER)   AS batter_id,
         CAST(inning       AS INTEGER)   AS inning,
         inning_topbot,
+        CAST(at_bat_number AS INTEGER)  AS at_bat_number,
+        CAST(pitch_number  AS INTEGER)  AS pitch_number,
         pitch_type,
         CAST(release_speed  AS FLOAT)   AS release_speed,
         CAST(release_spin   AS FLOAT)   AS release_spin,
@@ -55,6 +57,9 @@ def load_bronze_to_silver(con: duckdb.DuckDBPyConnection) -> None:
         CAST(outs_when_up   AS INTEGER) AS outs_when_up,
         CAST(launch_speed   AS FLOAT)   AS launch_speed,
         CAST(launch_angle   AS FLOAT)   AS launch_angle,
+        bb_type,
+        CAST(hc_x           AS FLOAT)   AS hc_x,
+        CAST(hc_y           AS FLOAT)   AS hc_y,
         CAST(estimated_ba   AS FLOAT)   AS estimated_ba,
         CAST(estimated_woba AS FLOAT)   AS estimated_woba,
         CAST(delta_run_exp  AS FLOAT)   AS delta_run_exp,
@@ -65,7 +70,7 @@ def load_bronze_to_silver(con: duckdb.DuckDBPyConnection) -> None:
         CAST(post_away_score AS INTEGER) AS post_away_score,
         NOW()                            AS loaded_at
 
-    FROM read_parquet('{bronze_glob}', hive_partitioning=true)
+    FROM read_parquet('{bronze_glob}', hive_partitioning=true, union_by_name=true)
 
     -- Deduplicate on pitch_id
     QUALIFY ROW_NUMBER() OVER (PARTITION BY pitch_id ORDER BY game_date) = 1

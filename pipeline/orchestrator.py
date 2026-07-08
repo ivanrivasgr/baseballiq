@@ -20,10 +20,19 @@ from datetime import date
 
 import duckdb
 
-from pipeline.config import DEMO_MODE, DUCKDB_PATH
+from pipeline.config import BRONZE_DIR, DEMO_MODE, DUCKDB_PATH
+from pipeline.gold.matchup_table import DEFAULT_EXPORT_PATH as HR_GOLD_EXPORT_PATH
+from pipeline.gold.matchup_table import run_all as build_hr_gold
+from pipeline.ingestion.schedule_ingestion import (
+    ingest_player_names,
+    ingest_schedule_range,
+    load_schedule_to_silver,
+)
 from pipeline.ingestion.statcast_ingestion import ingest_date_range
+from pipeline.ingestion.weather_ingestion import build_game_weather, ingest_weather_range
 from pipeline.silver.cleaning import create_players_table, load_bronze_to_silver
 from pipeline.silver.feature_engineering import run_all as build_gold
+from pipeline.silver.plate_appearances import build_plate_appearances
 
 logger = logging.getLogger(__name__)
 
@@ -34,9 +43,16 @@ def run_pipeline(start: str, end: str, skip_enrich: bool = False) -> None:
     logger.info("=" * 60)
 
     if not DEMO_MODE:
-        # Step 1: Bronze ingestion
+        # Step 1: Bronze ingestion (Statcast pitches + MLB schedule)
         logger.info("[1/4] Ingesting Statcast data...")
         ingest_date_range(start, end)
+        logger.info("[1/4] Ingesting MLB schedule (probables, venue, day/night)...")
+        ingest_schedule_range(start, end)
+        logger.info("[1/4] Ingesting stadium weather...")
+        try:
+            ingest_weather_range(start, end)
+        except Exception as exc:
+            logger.warning("Weather ingestion failed (continuing without): %s", exc)
     else:
         logger.info("[1/4] DEMO_MODE — skipping ingestion")
 
@@ -46,10 +62,27 @@ def run_pipeline(start: str, end: str, skip_enrich: bool = False) -> None:
         if not DEMO_MODE:
             load_bronze_to_silver(con)
             create_players_table(con)
+            load_schedule_to_silver(con)
+            build_plate_appearances(con)
+            try:
+                ingest_player_names(con)
+            except Exception as exc:
+                logger.warning("Player-name resolution failed (continuing): %s", exc)
+            if any((BRONZE_DIR / "weather").glob("**/*.parquet")):
+                build_game_weather(con)
 
         # Step 3: Silver → Gold
         logger.info("[3/4] Building Gold layer...")
         build_gold(con)
+        has_pa_table = con.execute(
+            "SELECT COUNT(*) FROM information_schema.tables"
+            " WHERE table_name = 'plate_appearances'"
+        ).fetchone()[0] > 0
+        if has_pa_table:
+            logger.info("[3/4] Building HR-prop Gold layer...")
+            build_hr_gold(con, export_path=HR_GOLD_EXPORT_PATH)
+        else:
+            logger.info("[3/4] No plate_appearances table — skipping HR-prop Gold")
 
     # Step 4: LLM enrichment
     if skip_enrich or DEMO_MODE:

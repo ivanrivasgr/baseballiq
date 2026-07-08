@@ -29,12 +29,14 @@ logger = logging.getLogger(__name__)
 # Statcast columns we care about — keeps Parquet files lean
 KEEP_COLS = [
     "game_pk", "game_date", "inning", "inning_topbot",
+    "at_bat_number", "pitch_number",
     "pitcher", "batter",
     "pitch_type", "release_speed", "release_spin_rate",
     "pfx_x", "pfx_z", "plate_x", "plate_z", "zone",
     "description", "events", "stand", "p_throws",
     "balls", "strikes", "outs_when_up",
-    "launch_speed", "launch_angle",
+    "launch_speed", "launch_angle", "launch_speed_angle",
+    "bb_type", "hc_x", "hc_y",
     "estimated_ba_using_speedangle",
     "estimated_woba_using_speedangle",
     "delta_run_exp", "barrel",
@@ -114,6 +116,13 @@ def _ingest_single_day(game_date: str) -> Path:
 
     # Cast types for Parquet efficiency
     df["game_date"]   = pd.to_datetime(df["game_date"]).dt.date
+    # Raw Statcast pulls don't always include a `barrel` column;
+    # launch_speed_angle == 6 is Statcast's barrel classification.
+    if "is_barrel" not in df.columns:
+        if "launch_speed_angle" in df.columns:
+            df["is_barrel"] = df["launch_speed_angle"].eq(6)
+        else:
+            df["is_barrel"] = False
     df["is_barrel"]   = df["is_barrel"].fillna(0).astype(bool)
     df["pitcher_id"]  = pd.to_numeric(df["pitcher_id"], errors="coerce").astype("Int64")
     df["batter_id"]   = pd.to_numeric(df["batter_id"],  errors="coerce").astype("Int64")

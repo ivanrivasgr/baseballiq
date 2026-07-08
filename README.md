@@ -182,6 +182,52 @@ No secrets are required for the demo dashboard because the repo includes cached 
 
 ---
 
+## HR Prop Prediction System
+
+A second modeling stack built on the same medallion pipeline: predict
+**P(batter hits a home run in a given game)** as a calibrated probability and
+price it against sportsbook prop lines. Full spec: [`docs/HR_PROP_PLAN.md`](docs/HR_PROP_PLAN.md).
+
+**Pipeline additions:**
+- Silver `plate_appearances` (PA grain with `is_hr` target, spray angle) +
+  MLB Stats API schedule (probable starters, day/night) + Open-Meteo weather
+- Gold `batter_matchup_features`: one row = batter × game; rolling batter
+  form, opposing starter + bullpen HR susceptibility, park factors by
+  handedness, wind-out projection — every window ends strictly the day
+  before the game (`tests/test_leakage.py` enforces this mechanically)
+- `models/train_hr.py`: XGBoost **classifier** with a date-grouped
+  TimeSeriesSplit and an isotonic calibrator inside the artifact —
+  edges are only ever computed from calibrated probabilities
+- `betting/`: The Odds API adapter (quota-aware, response-cached),
+  two-way devig, edge/EV/Kelly, parlay math with same-game correlation
+  flags, and the config-driven Voss Edge L1–L5 tier rubric
+  (`config/voss_edge.yaml`)
+- `enrichment/llm_narrator.py`: Claude Haiku writes the top-10 prop-card
+  narratives from pre-formatted numbers only — a mechanical check drops any
+  card whose prose contains a number that wasn't injected
+
+**Workflow:**
+```bash
+make backfill DATE_START=2022-04-07 DATE_END=2022-11-05   # once per season
+make train-hr                                             # calibrated artifact
+make slate DATE=2025-07-04                                # daily increment
+make score-hr DATE=2025-07-04                             # P(HR) per batter
+make cards                                                # top-10 prop cards
+make board DATE=2025-07-04 && make board-ui               # slate matchup grid
+```
+
+**Matchup board:** a Kasper-style slate grid (`dashboard/matchup_board.py`) —
+every projected hitter vs the opposing probable starter with color-graded
+ISO / xwOBA / xwOBAcon / SwS% / Barrel% / pulled-Barrel% / sweet-spot% /
+FB% / HardHit% / LA plus a FORM arrow (30-day vs 365-day contact quality),
+all computed from data strictly before the slate date. Where proprietary
+sites show composite ratings, ours shows the calibrated model P(HR).
+
+Requires `ODDS_API_KEY` (The Odds API, player-props tier) for live lines;
+everything else runs on free data sources.
+
+---
+
 ## Example Scouting Report Output
 
 ```

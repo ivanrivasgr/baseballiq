@@ -181,7 +181,8 @@ class TestReportGeneration:
         assert grade(0.340) == "A+"
         assert grade(0.315) == "A"
         assert grade(0.295) == "B+"
-        assert grade(0.260) == "B"
+        assert grade(0.275) == "B"
+        assert grade(0.260) == "C+"
         assert grade(0.210) == "D"
 
     def test_stuff_score_bounds(self):

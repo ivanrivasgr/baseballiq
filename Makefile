@@ -65,6 +65,43 @@ report:
 		--game-date  $(DATE) \
 		--json-out   reports/output/pitcher_$(PLAYER_ID)_$(DATE).json
 
+# ── HR Prop System ──────────────────────────────────────────────────────────────
+
+## Backfill one season for the HR-prop model (repeat per season 2022-2025)
+backfill:
+	@echo "🟤 HR-prop backfill: $(DATE_START) → $(DATE_END)"
+	$(PYTHON) pipeline.orchestrator --start $(DATE_START) --end $(DATE_END) --skip-enrich
+
+## Run one slate day end-to-end: ingest increment → gold → ready to score
+slate:
+	@echo "📅 Slate build for $(DATE)"
+	$(PYTHON) pipeline.orchestrator --start $(DATE) --end $(DATE) --skip-enrich
+
+## Train the HR prop classifier (calibrated artifact)
+train-hr:
+	@echo "📈 Training HR prop model"
+	$(PYTHON) models.train_hr --output models/artifacts/hr_prop_v1.pkl
+
+## Score a slate date with the trained HR model
+score-hr:
+	@echo "🎯 Scoring slate $(DATE)"
+	$(PYTHON) models.predict_hr --date $(DATE) \
+		--output data/gold/hr_scores_$(DATE).parquet
+
+## Render top-N prop cards from computed edges (add --narrate for LLM prose)
+cards:
+	@echo "🃏 Prop cards"
+	$(PYTHON) reports.prop_card --edges data/gold/prop_edges.parquet --top 10
+
+## Build the slate matchup board (Kasper-style hitter grid) for a date
+board:
+	@echo "🗓  Matchup board for $(DATE)"
+	$(PYTHON) pipeline.gold.matchup_board --date $(DATE)
+
+## Launch the matchup board UI
+board-ui:
+	streamlit run dashboard/matchup_board.py
+
 ## Launch Streamlit dashboard
 dashboard:
 	@echo "📊 Starting Streamlit dashboard"

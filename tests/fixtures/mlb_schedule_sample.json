@@ -1,0 +1,45 @@
+{
+  "totalGames": 2,
+  "dates": [
+    {
+      "date": "2024-07-01",
+      "games": [
+        {
+          "gamePk": 745804,
+          "gameType": "R",
+          "gameDate": "2024-07-01T23:05:00Z",
+          "dayNight": "night",
+          "status": {"detailedState": "Scheduled"},
+          "venue": {"id": 2681, "name": "Citizens Bank Park"},
+          "teams": {
+            "home": {
+              "team": {"id": 143, "name": "Philadelphia Phillies", "abbreviation": "PHI"},
+              "probablePitcher": {"id": 554430, "fullName": "Zack Wheeler"}
+            },
+            "away": {
+              "team": {"id": 121, "name": "New York Mets", "abbreviation": "NYM"},
+              "probablePitcher": {"id": 656849, "fullName": "David Peterson"}
+            }
+          }
+        },
+        {
+          "gamePk": 745805,
+          "gameType": "R",
+          "gameDate": "2024-07-01T17:10:00Z",
+          "dayNight": "day",
+          "status": {"detailedState": "Scheduled"},
+          "venue": {"id": 4169, "name": "loanDepot park"},
+          "teams": {
+            "home": {
+              "team": {"id": 146, "name": "Miami Marlins", "abbreviation": "MIA"}
+            },
+            "away": {
+              "team": {"id": 111, "name": "Boston Red Sox", "abbreviation": "BOS"},
+              "probablePitcher": {"id": 678394, "fullName": "Kutter Crawford"}
+            }
+          }
+        }
+      ]
+    }
+  ]
+}

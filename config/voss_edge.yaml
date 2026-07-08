@@ -1,0 +1,35 @@
+# Voss Edge L1–L5 confidence rubric — DRAFT v0.1
+# ================================================
+# STATUS: placeholder cutoffs. Per the build plan, final thresholds are set
+# from holdout backtest results (flat-stake ROI by edge bucket) once the
+# 2022–2025 backfill and first live odds snapshots exist. The SHAPE of this
+# file is the contract; the numbers are not yet.
+#
+# Semantics: tiers are evaluated top-down (L5 first); a pick gets the first
+# tier whose conditions it satisfies, else L1. Caps are applied after:
+#   - devig_quality != 'two_way'  → capped at assumed_devig_max_tier
+#   - correlated parlay           → capped at correlated_max_tier
+#   - data_completeness below min → capped at low_completeness_max_tier
+
+version: "0.1-draft"
+
+caps:
+  assumed_devig_max_tier: L3
+  correlated_max_tier: L2
+  low_completeness_max_tier: L2
+  min_data_completeness: 0.85
+
+tiers:
+  L5:
+    min_edge: 0.08
+    min_model_p: 0.06
+  L4:
+    min_edge: 0.05
+    min_model_p: 0.05
+  L3:
+    min_edge: 0.03
+    min_model_p: 0.04
+  L2:
+    min_edge: 0.015
+    min_model_p: 0.0
+  # L1 = everything else (tracked, not bet)
